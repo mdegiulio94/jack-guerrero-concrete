@@ -8,7 +8,6 @@
   --line: #2b3035;
   --surface: #16191c;
   --radius: 12px;
-  --shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 * {
@@ -89,17 +88,6 @@ h1 {
 h2 {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
   margin-bottom: 1rem;
-}
-
-p,
-li,
-summary,
-label,
-input,
-select,
-textarea,
-button {
-  font-size: 1rem;
 }
 
 .muted {
@@ -266,40 +254,22 @@ button {
   padding: 1.1rem;
 }
 
-.process-list {
+.process-list,
+.check-list,
+.service-list {
   margin: 0;
   padding-left: 1.2rem;
 }
 
-.process-list li {
-  margin: 0.45rem 0;
-}
-
-.check-list {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.check-list li {
+.process-list li,
+.check-list li,
+.service-list li {
   margin: 0.45rem 0;
 }
 
 .cta-band {
   background: linear-gradient(90deg, #1a1d20 0%, #24282d 55%, #2c2219 100%);
   border-top: 1px solid var(--line);
-}
-
-.page-intro {
-  padding-bottom: 1.5rem;
-}
-
-.service-list {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.service-list li {
-  margin: 0.5rem 0;
 }
 
 .faq-wrap {
@@ -349,6 +319,19 @@ summary {
   gap: 1.4rem;
 }
 
+.map-wrap {
+  margin-top: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.map-wrap iframe {
+  width: 100%;
+  min-height: 280px;
+  border: 0;
+}
+
 .quote-form {
   background: #13161a;
   border: 1px solid var(--line);
@@ -379,6 +362,37 @@ summary {
 .quote-form textarea:focus {
   outline: 2px solid rgba(255, 106, 26, 0.6);
   border-color: var(--accent);
+}
+
+.service-group {
+  margin-top: 0.9rem;
+  border: 1px solid #444a51;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.service-group legend {
+  font-weight: 700;
+  padding: 0 0.4rem;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.checkbox-grid label {
+  margin: 0;
+  font-weight: 500;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.checkbox-grid input {
+  width: auto;
+  margin: 0;
 }
 
 .quote-form .btn {

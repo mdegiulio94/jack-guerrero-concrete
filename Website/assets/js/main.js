@@ -28,28 +28,28 @@
   const form = document.querySelector('.quote-form');
   if (!form) return;
 
-  const fields = [
-    { id: 'name', message: 'Please enter your full name.' },
+  const requiredFields = [
+    { id: 'name', message: 'Please enter your name.' },
     { id: 'phone', message: 'Please enter a valid phone number.' },
     { id: 'email', message: 'Please enter a valid email address.' },
-    { id: 'service', message: 'Please select a service.' },
-    { id: 'location', message: 'Please enter the project location.' },
-    { id: 'details', message: 'Please provide project details.' }
+    { id: 'city', message: 'Please enter your city.' },
+    { id: 'project-type', message: 'Please select a project type.' },
+    { id: 'message', message: 'Please add your project details.' }
   ];
 
   function showError(fieldId, message) {
     const input = document.getElementById(fieldId);
     const error = document.getElementById(fieldId + '-error');
-    if (!input || !error) return;
-    input.setAttribute('aria-invalid', 'true');
+    if (!error) return;
+    if (input) input.setAttribute('aria-invalid', 'true');
     error.textContent = message;
   }
 
   function clearError(fieldId) {
     const input = document.getElementById(fieldId);
     const error = document.getElementById(fieldId + '-error');
-    if (!input || !error) return;
-    input.removeAttribute('aria-invalid');
+    if (!error) return;
+    if (input) input.removeAttribute('aria-invalid');
     error.textContent = '';
   }
 
@@ -58,50 +58,60 @@
     if (!input) return true;
 
     const value = input.value.trim();
-
     if (!value) {
       showError(field.id, field.message);
       return false;
     }
 
-    if (field.id === 'phone') {
-      const phoneOk = /^[0-9+()\-\s]{7,}$/.test(value);
-      if (!phoneOk) {
-        showError(field.id, field.message);
-        return false;
-      }
+    if (field.id === 'phone' && !/^[0-9+()\-\s]{7,}$/.test(value)) {
+      showError(field.id, field.message);
+      return false;
     }
 
-    if (field.id === 'email') {
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value);
-      if (!emailOk) {
-        showError(field.id, field.message);
-        return false;
-      }
+    if (field.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+      showError(field.id, field.message);
+      return false;
     }
 
     clearError(field.id);
     return true;
   }
 
-  fields.forEach(function (field) {
+  function validateServices() {
+    const serviceBoxes = form.querySelectorAll('input[name="services"]');
+    const anyChecked = Array.from(serviceBoxes).some(function (box) { return box.checked; });
+    const error = document.getElementById('services-error');
+
+    if (!error) return true;
+
+    if (!anyChecked) {
+      error.textContent = 'Please select at least one service.';
+      return false;
+    }
+
+    error.textContent = '';
+    return true;
+  }
+
+  requiredFields.forEach(function (field) {
     const input = document.getElementById(field.id);
     if (!input) return;
-    input.addEventListener('input', function () {
-      validateField(field);
-    });
-    input.addEventListener('blur', function () {
-      validateField(field);
-    });
+    input.addEventListener('input', function () { validateField(field); });
+    input.addEventListener('blur', function () { validateField(field); });
+  });
+
+  form.querySelectorAll('input[name="services"]').forEach(function (box) {
+    box.addEventListener('change', validateServices);
   });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const allValid = fields.map(validateField).every(Boolean);
+    const fieldsValid = requiredFields.map(validateField).every(Boolean);
+    const servicesValid = validateServices();
     const status = form.querySelector('.form-status');
 
-    if (!allValid) {
+    if (!fieldsValid || !servicesValid) {
       if (status) {
         status.textContent = 'Please fix the highlighted fields and submit again.';
       }
@@ -111,9 +121,12 @@
     }
 
     form.reset();
-    fields.forEach(function (field) { clearError(field.id); });
+    requiredFields.forEach(function (field) { clearError(field.id); });
+    const serviceError = document.getElementById('services-error');
+    if (serviceError) serviceError.textContent = '';
+
     if (status) {
-      status.textContent = 'Thanks. Your quote request has been received. We will contact you soon.';
+      status.textContent = 'Thanks. Your quote request has been received. We will contact you within 1 business day.';
     }
   });
 })();
