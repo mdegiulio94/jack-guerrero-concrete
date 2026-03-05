@@ -4,20 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Concrete Project Gallery | Jack Guerrero Concrete</title>
-  <meta name="description" content="View project photo examples from Jack Guerrero Concrete serving Pocatello, Idaho and Southeast Idaho.">
+  <meta name="description" content="Browse concrete project examples from Jack Guerrero Concrete in Pocatello, Idaho and Southeast Idaho.">
   <link rel="canonical" href="https://mdegiulio94.github.io/jack-guerrero-concrete/gallery.html">
 
-  <meta property="og:title" content="Concrete Gallery | Jack Guerrero Concrete">
-  <meta property="og:description" content="Project gallery for concrete driveways, patios, sidewalks, slabs, and foundations.">
+  <meta property="og:title" content="Concrete Project Gallery | Jack Guerrero Concrete">
+  <meta property="og:description" content="Flatwork, foundations, sidewalks, slabs, and commercial concrete project examples.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mdegiulio94.github.io/jack-guerrero-concrete/gallery.html">
   <meta property="og:image" content="https://mdegiulio94.github.io/jack-guerrero-concrete/assets/images/og-image.svg">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Concrete Gallery | Jack Guerrero Concrete">
-  <meta name="twitter:description" content="Recent concrete project examples from the Pocatello area.">
+  <meta name="twitter:title" content="Concrete Project Gallery | Jack Guerrero Concrete">
+  <meta name="twitter:description" content="See recent project examples from Pocatello and Southeast Idaho.">
   <meta name="twitter:image" content="https://mdegiulio94.github.io/jack-guerrero-concrete/assets/images/og-image.svg">
-  <meta name="twitter:url" content="https://mdegiulio94.github.io/jack-guerrero-concrete/gallery.html">
 
   <script type="application/ld+json">
   {
@@ -49,6 +48,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
+
   <header class="site-header" id="top">
     <div class="container nav-wrap">
       <a class="brand" href="index.html" aria-label="Jack Guerrero Concrete home">
@@ -71,64 +71,81 @@
   </header>
 
   <main id="main-content">
-    <section class="page-intro section">
+    <section class="page-hero section">
       <div class="container">
         <p class="eyebrow">Gallery</p>
-        <h1>Concrete Project Gallery</h1>
-        <p>These are placeholder project visuals. Replace with your real photos as new jobs are completed.</p>
+        <h1>Recent Concrete Projects</h1>
+        <p>Filter by project type to review our work examples.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <!-- Add real photos to assets/images/gallery/ and keep names project-01, project-02, etc. (or update src values below). -->
-        <div class="gallery-grid">
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-01.svg" alt="Stamped concrete driveway project in Pocatello" loading="lazy">
-            <figcaption>Driveway installation with clean finish in Pocatello, ID.</figcaption>
+        <div class="filter-row" role="group" aria-label="Gallery filters">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="flatwork" type="button">Flatwork</button>
+          <button class="filter-btn" data-filter="foundations" type="button">Foundations</button>
+          <button class="filter-btn" data-filter="sidewalks" type="button">Sidewalks</button>
+          <button class="filter-btn" data-filter="slabs" type="button">Slabs</button>
+          <button class="filter-btn" data-filter="commercial" type="button">Commercial</button>
+          <button class="filter-btn" data-filter="other" type="button">Other</button>
+        </div>
+
+        <!-- Place real photos in assets/images/gallery/. Recommended names: project-01.jpg, project-02.jpg, etc. Recommended size: 1600x1200 or larger, compressed for web. -->
+        <div class="gallery-grid masonry" id="project-gallery">
+          <figure class="gallery-card" data-category="flatwork">
+            <img src="assets/images/gallery/project-01.svg" alt="Flatwork driveway installation in Pocatello" loading="lazy">
+            <figcaption>Driveway flatwork installation in Pocatello, ID.</figcaption>
           </figure>
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-02.svg" alt="Backyard concrete patio pour for residential home" loading="lazy">
-            <figcaption>Residential patio slab for outdoor seating area.</figcaption>
+          <figure class="gallery-card" data-category="slabs">
+            <img src="assets/images/gallery/project-02.svg" alt="Patio slab concrete pour for residential backyard" loading="lazy">
+            <figcaption>Patio slab pour and clean finish detail.</figcaption>
           </figure>
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-03.svg" alt="Commercial concrete flatwork at business property" loading="lazy">
-            <figcaption>Commercial flatwork section for improved access.</figcaption>
+          <figure class="gallery-card" data-category="commercial">
+            <img src="assets/images/gallery/project-03.svg" alt="Commercial concrete flatwork section" loading="lazy">
+            <figcaption>Commercial flatwork upgrade.</figcaption>
           </figure>
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-04.svg" alt="Concrete sidewalk and approach path near building" loading="lazy">
-            <figcaption>Sidewalk and walkway concrete installation.</figcaption>
+          <figure class="gallery-card" data-category="sidewalks">
+            <img src="assets/images/gallery/project-04.svg" alt="Concrete sidewalk path and approach" loading="lazy">
+            <figcaption>Sidewalk and access path installation.</figcaption>
           </figure>
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-05.svg" alt="Large concrete slab for garage or shop building" loading="lazy">
-            <figcaption>Shop slab with reinforced prep and level finish.</figcaption>
+          <figure class="gallery-card" data-category="slabs">
+            <img src="assets/images/gallery/project-05.svg" alt="Concrete slab prepared for shop building" loading="lazy">
+            <figcaption>Reinforced slab for shop/utility use.</figcaption>
           </figure>
-          <figure class="gallery-card">
-            <img src="assets/images/gallery/project-06.svg" alt="Concrete foundation and perimeter flatwork project" loading="lazy">
-            <figcaption>Foundation-adjacent flatwork for long-term durability.</figcaption>
+          <figure class="gallery-card" data-category="foundations">
+            <img src="assets/images/gallery/project-06.svg" alt="Foundation-adjacent concrete work" loading="lazy">
+            <figcaption>Foundation-adjacent concrete and finishing.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-category="other">
+            <img src="assets/images/gallery/project-01.svg" alt="Concrete apron and transition area" loading="lazy">
+            <figcaption>Apron and transition concrete detail.</figcaption>
+          </figure>
+          <figure class="gallery-card" data-category="flatwork">
+            <img src="assets/images/gallery/project-02.svg" alt="Residential flatwork surface finish" loading="lazy">
+            <figcaption>Residential flatwork with clean edge lines.</figcaption>
           </figure>
         </div>
-      </div>
-    </section>
-
-    <section class="section cta-band">
-      <div class="container">
-        <h2>Planning a New Project?</h2>
-        <a class="btn btn-primary" href="contact.html#quote-form">Request a Quote</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-wrap">
-      <p>&copy; <span id="year"></span> Jack Guerrero Concrete. All rights reserved.</p>
-      <p><strong>Phone:</strong> <a href="tel:+12085898192">208-589-8192</a> | <strong>Email:</strong> <a href="mailto:jack@jackguerreroconcrete.com">jack@jackguerreroconcrete.com</a></p>
-      <p><strong>Hours:</strong> Monday–Friday 8:00 AM – 5:00 PM</p>
-      <p>Serving Pocatello, Idaho and Southeast Idaho (including Chubbuck, Inkom, American Falls, Blackfoot, Idaho Falls, and surrounding communities).</p>
+      <div class="footer-grid">
+        <div><p><strong>Jack Guerrero Concrete</strong></p><p>Pocatello, Idaho and Southeast Idaho.</p></div>
+        <div><p><strong>Contact</strong></p><p><a href="tel:+12085898192">208-589-8192</a></p><p><a href="mailto:jack@jackguerreroconcrete.com">jack@jackguerreroconcrete.com</a></p><p>Monday–Friday 8:00 AM – 5:00 PM</p></div>
+        <div><p><strong>Quick Links</strong></p><p><a href="index.html">Home</a> | <a href="services.html">Services</a></p><p><a href="gallery.html">Gallery</a> | <a href="contact.html">Contact</a></p></div>
+      </div>
+      <p class="footer-area">Service area: Pocatello, Idaho and Southeast Idaho (including Chubbuck, Inkom, American Falls, Blackfoot, Idaho Falls, and surrounding communities).</p>
     </div>
   </footer>
+
+  <div class="mobile-cta" aria-label="Quick actions">
+    <a class="btn btn-secondary" href="tel:+12085898192">Call Now</a>
+    <a class="btn btn-primary" href="contact.html#quote-form">Request Quote</a>
+  </div>
 
   <script src="assets/js/main.js"></script>
 </body>
 </html>
-

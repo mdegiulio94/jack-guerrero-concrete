@@ -20,9 +20,38 @@
     });
   }
 
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
+  const yearTargets = document.querySelectorAll('#year');
+  yearTargets.forEach(function (node) {
+    node.textContent = String(new Date().getFullYear());
+  });
+
+  document.querySelectorAll('[data-accordion]').forEach(function (accordion) {
+    accordion.querySelectorAll('.accordion-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        trigger.setAttribute('aria-expanded', String(!expanded));
+        if (panel) panel.hidden = expanded;
+      });
+    });
+  });
+
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('#project-gallery .gallery-card');
+  if (filterButtons.length && galleryItems.length) {
+    filterButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const filter = button.getAttribute('data-filter');
+        filterButtons.forEach(function (b) { b.classList.remove('active'); });
+        button.classList.add('active');
+
+        galleryItems.forEach(function (item) {
+          const category = item.getAttribute('data-category');
+          const show = filter === 'all' || category === filter;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
   }
 
   const form = document.querySelector('.quote-form');
@@ -34,22 +63,22 @@
     { id: 'email', message: 'Please enter a valid email address.' },
     { id: 'city', message: 'Please enter your city.' },
     { id: 'project-type', message: 'Please select a project type.' },
-    { id: 'message', message: 'Please add your project details.' }
+    { id: 'message', message: 'Please include project details.' }
   ];
 
   function showError(fieldId, message) {
-    const input = document.getElementById(fieldId);
+    const field = document.getElementById(fieldId);
     const error = document.getElementById(fieldId + '-error');
     if (!error) return;
-    if (input) input.setAttribute('aria-invalid', 'true');
+    if (field) field.setAttribute('aria-invalid', 'true');
     error.textContent = message;
   }
 
   function clearError(fieldId) {
-    const input = document.getElementById(fieldId);
+    const field = document.getElementById(fieldId);
     const error = document.getElementById(fieldId + '-error');
     if (!error) return;
-    if (input) input.removeAttribute('aria-invalid');
+    if (field) field.removeAttribute('aria-invalid');
     error.textContent = '';
   }
 
@@ -78,26 +107,20 @@
   }
 
   function validateServices() {
-    const serviceBoxes = form.querySelectorAll('input[name="services"]');
-    const anyChecked = Array.from(serviceBoxes).some(function (box) { return box.checked; });
+    const boxes = form.querySelectorAll('input[name="services"]');
     const error = document.getElementById('services-error');
+    if (!boxes.length || !error) return true;
 
-    if (!error) return true;
-
-    if (!anyChecked) {
-      error.textContent = 'Please select at least one service.';
-      return false;
-    }
-
-    error.textContent = '';
-    return true;
+    const selected = Array.from(boxes).some(function (box) { return box.checked; });
+    error.textContent = selected ? '' : 'Please select at least one service.';
+    return selected;
   }
 
   requiredFields.forEach(function (field) {
     const input = document.getElementById(field.id);
     if (!input) return;
-    input.addEventListener('input', function () { validateField(field); });
     input.addEventListener('blur', function () { validateField(field); });
+    input.addEventListener('input', function () { validateField(field); });
   });
 
   form.querySelectorAll('input[name="services"]').forEach(function (box) {
@@ -107,14 +130,12 @@
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const fieldsValid = requiredFields.map(validateField).every(Boolean);
-    const servicesValid = validateServices();
+    const validFields = requiredFields.map(validateField).every(Boolean);
+    const validServices = validateServices();
     const status = form.querySelector('.form-status');
 
-    if (!fieldsValid || !servicesValid) {
-      if (status) {
-        status.textContent = 'Please fix the highlighted fields and submit again.';
-      }
+    if (!validFields || !validServices) {
+      if (status) status.textContent = 'Please fix the highlighted fields and submit again.';
       const firstInvalid = form.querySelector('[aria-invalid="true"]');
       if (firstInvalid) firstInvalid.focus();
       return;
@@ -122,11 +143,11 @@
 
     form.reset();
     requiredFields.forEach(function (field) { clearError(field.id); });
-    const serviceError = document.getElementById('services-error');
-    if (serviceError) serviceError.textContent = '';
+    const servicesError = document.getElementById('services-error');
+    if (servicesError) servicesError.textContent = '';
 
     if (status) {
-      status.textContent = 'Thanks. Your quote request has been received. We will contact you within 1 business day.';
+      status.textContent = 'Thanks. Your quote request has been received. We respond within 1 business day.';
     }
   });
 })();
