@@ -330,8 +330,20 @@ p { margin: 0 0 1rem; max-width: 68ch; }
   margin-top: 1.5rem;
 }
 
+.video-grid-single {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .video-card {
   margin: 0;
+}
+
+.video-note {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--text-muted);
 }
 
 .video-frame {
@@ -504,4 +516,5 @@ p { margin: 0 0 1rem; max-width: 68ch; }
 @media (min-width: 1024px) {
   .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
+
 
