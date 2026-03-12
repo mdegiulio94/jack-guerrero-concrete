@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mdegiulio94.github.io/jack-guerrero-concrete/sitemap.xml
+Sitemap: https://www.jackguerreroconcrete.com/sitemap.xml
