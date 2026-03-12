@@ -73,7 +73,7 @@
           <li><a href="gallery.html">Gallery</a></li>
           <li><a aria-current="page" href="contact.html">Contact</a></li>
         </ul>
-        <a class="btn btn-quote nav-quote" href="#quote-form">Request a Quote</a>
+        <a class="btn btn-quote nav-quote" href="contact.html#quote-form">Request a Quote</a>
       </nav>
     </div>
   </header>
@@ -113,25 +113,22 @@
           </div>
         </div>
 
-        <form class="quote-form" action="https://formspree.io/f/xzdjewqe" method="POST" novalidate>
+        <form action="https://formspree.io/f/xzdjewqe" method="POST" class="quote-form">
           <h2>Quote Request Form</h2>
+          <p>We respond within one business day.</p>
           <input type="hidden" name="_subject" value="New Quote Request - Jack Guerrero Concrete">
 
           <label for="name">Name *</label>
           <input id="name" name="name" type="text" autocomplete="name" required>
-          <p class="error-message" id="name-error" aria-live="polite"></p>
 
           <label for="phone">Phone *</label>
           <input id="phone" name="phone" type="tel" autocomplete="tel" required pattern="[0-9+()\-\s]{7,}">
-          <p class="error-message" id="phone-error" aria-live="polite"></p>
 
           <label for="email">Email *</label>
           <input id="email" name="email" type="email" autocomplete="email" required>
-          <p class="error-message" id="email-error" aria-live="polite"></p>
 
           <label for="city">City *</label>
           <input id="city" name="city" type="text" required>
-          <p class="error-message" id="city-error" aria-live="polite"></p>
 
           <label for="project-type">Project Type *</label>
           <select id="project-type" name="project_type" required>
@@ -141,7 +138,6 @@
             <option>Repair / Replacement</option>
             <option>Other</option>
           </select>
-          <p class="error-message" id="project-type-error" aria-live="polite"></p>
 
           <label for="estimated-start">Estimated Start</label>
           <select id="estimated-start" name="estimated_start">
@@ -164,14 +160,11 @@
               <label><input type="checkbox" name="services[]" value="Other"> Other</label>
             </div>
           </fieldset>
-          <p class="error-message" id="services-error" aria-live="polite"></p>
 
           <label for="message">Message *</label>
           <textarea id="message" name="message" rows="5" required></textarea>
-          <p class="error-message" id="message-error" aria-live="polite"></p>
 
           <button class="btn btn-primary" type="submit">Request a Quote</button>
-          <p class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -199,7 +192,7 @@
 
   <div class="mobile-cta" aria-label="Quick actions">
     <a class="btn btn-secondary" href="tel:+12085898192">Call Now</a>
-    <a class="btn btn-primary" href="#quote-form">Request Quote</a>
+    <a class="btn btn-primary" href="contact.html#quote-form">Request Quote</a>
   </div>
 
   <script src="assets/js/main.js"></script>
