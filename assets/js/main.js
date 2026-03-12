@@ -107,7 +107,7 @@
   }
 
   function validateServices() {
-    const boxes = form.querySelectorAll('input[name="services"]');
+    const boxes = form.querySelectorAll('input[name="services[]"]');
     const error = document.getElementById('services-error');
     if (!boxes.length || !error) return true;
 
@@ -123,11 +123,11 @@
     input.addEventListener('input', function () { validateField(field); });
   });
 
-  form.querySelectorAll('input[name="services"]').forEach(function (box) {
+  form.querySelectorAll('input[name="services[]"]').forEach(function (box) {
     box.addEventListener('change', validateServices);
   });
 
-  form.addEventListener('submit', function (event) {
+  form.addEventListener('submit', async function (event) {
     event.preventDefault();
 
     const validFields = requiredFields.map(validateField).every(Boolean);
@@ -141,13 +141,40 @@
       return;
     }
 
-    form.reset();
-    requiredFields.forEach(function (field) { clearError(field.id); });
-    const servicesError = document.getElementById('services-error');
-    if (servicesError) servicesError.textContent = '';
-
     if (status) {
-      status.textContent = 'Thanks. Your quote request has been received. We respond within 1 business day.';
+      status.textContent = 'Sending your request...';
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed.');
+      }
+
+      form.reset();
+      requiredFields.forEach(function (field) { clearError(field.id); });
+      const servicesError = document.getElementById('services-error');
+      if (servicesError) servicesError.textContent = '';
+
+      if (status) {
+        status.textContent = 'Thank you! Your quote request has been sent. We will respond within one business day.';
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = 'Something went wrong. Please try again or call us directly.';
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   });
 })();

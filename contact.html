@@ -113,8 +113,9 @@
           </div>
         </div>
 
-        <form class="quote-form" novalidate>
+        <form class="quote-form" action="https://formspree.io/f/xzdjewqe" method="POST" novalidate>
           <h2>Quote Request Form</h2>
+          <input type="hidden" name="_subject" value="New Quote Request - Jack Guerrero Concrete">
 
           <label for="name">Name *</label>
           <input id="name" name="name" type="text" autocomplete="name" required>
@@ -133,7 +134,7 @@
           <p class="error-message" id="city-error" aria-live="polite"></p>
 
           <label for="project-type">Project Type *</label>
-          <select id="project-type" name="project-type" required>
+          <select id="project-type" name="project_type" required>
             <option value="">Select one</option>
             <option>Residential</option>
             <option>Commercial</option>
@@ -143,7 +144,7 @@
           <p class="error-message" id="project-type-error" aria-live="polite"></p>
 
           <label for="estimated-start">Estimated Start</label>
-          <select id="estimated-start" name="estimated-start">
+          <select id="estimated-start" name="estimated_start">
             <option value="">Select timeline</option>
             <option>ASAP</option>
             <option>1-2 weeks</option>
@@ -155,12 +156,12 @@
           <fieldset class="service-group">
             <legend>Services Needed *</legend>
             <div class="checkbox-grid">
-              <label><input type="checkbox" name="services" value="Driveway"> Driveway</label>
-              <label><input type="checkbox" name="services" value="Patio"> Patio</label>
-              <label><input type="checkbox" name="services" value="Sidewalk"> Sidewalk</label>
-              <label><input type="checkbox" name="services" value="Slab"> Slab</label>
-              <label><input type="checkbox" name="services" value="Foundation"> Foundation</label>
-              <label><input type="checkbox" name="services" value="Other"> Other</label>
+              <label><input type="checkbox" name="services[]" value="Driveway"> Driveway</label>
+              <label><input type="checkbox" name="services[]" value="Patio"> Patio</label>
+              <label><input type="checkbox" name="services[]" value="Sidewalk"> Sidewalk</label>
+              <label><input type="checkbox" name="services[]" value="Slab"> Slab</label>
+              <label><input type="checkbox" name="services[]" value="Foundation"> Foundation</label>
+              <label><input type="checkbox" name="services[]" value="Other"> Other</label>
             </div>
           </fieldset>
           <p class="error-message" id="services-error" aria-live="polite"></p>
