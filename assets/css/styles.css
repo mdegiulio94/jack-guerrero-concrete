@@ -497,11 +497,30 @@ strong { color: var(--text); }
 }
 .precision-card {
   padding-top: 1.7rem;
+  background:
+    radial-gradient(circle at 86% 16%, rgba(255,106,26,0.08), transparent 22%),
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02)),
+    linear-gradient(180deg, rgba(24,30,37,0.96), rgba(18,23,29,0.96));
+}
+.precision-card-head {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.precision-card h3 {
+  margin: 0;
+  line-height: 1.18;
+}
+.precision-card p {
+  margin-bottom: 0;
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
 }
 .precision-icon {
   width: 58px;
   height: 58px;
-  margin-bottom: 1rem;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.08);
   background:
@@ -509,7 +528,9 @@ strong { color: var(--text); }
     linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
   display: inline-grid;
   place-items: center;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 12px 24px rgba(0,0,0,0.18);
 }
 .precision-icon span {
   display: block;
@@ -642,7 +663,7 @@ strong { color: var(--text); }
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: var(--shadow-lg);
-  min-height: 300px;
+  min-height: 360px;
   background: #101317;
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
@@ -663,13 +684,13 @@ strong { color: var(--text); }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  min-height: 300px;
+  min-height: 360px;
 }
 .featured-work-primary img {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 8.5;
 }
 .featured-work-secondary img {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 5;
 }
 .featured-work-overlay {
   position: absolute;
@@ -689,10 +710,10 @@ strong { color: var(--text); }
 }
 .featured-work-title {
   color: #fff;
-  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  font-size: clamp(1.2rem, 2.35vw, 1.75rem);
   line-height: 1.2;
   font-weight: 800;
-  max-width: 26ch;
+  max-width: 24ch;
 }
 .projects-section-light .featured-work-card {
   border-color: rgba(48, 41, 34, 0.1);
@@ -997,6 +1018,8 @@ strong { color: var(--text); }
 .final-cta-shell {
   border-top: 1px solid rgba(255,255,255,0.06);
   border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-top: 6.4rem;
+  padding-bottom: 6.4rem;
 }
 
 .final-cta-shell {
@@ -1052,14 +1075,14 @@ strong { color: var(--text); }
   .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery-teaser { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .featured-work-grid {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.65fr 1fr;
     align-items: stretch;
   }
   .featured-work-primary {
-    min-height: 500px;
+    min-height: 580px;
   }
   .featured-work-secondary {
-    min-height: 500px;
+    min-height: 580px;
   }
   .video-grid-finished { grid-template-columns: 1.35fr 0.85fr; }
   .contact-grid { grid-template-columns: 1fr 1.2fr; align-items: start; }
@@ -1070,7 +1093,23 @@ strong { color: var(--text); }
 @media (max-width: 767px) {
   .nav-wrap { min-height: 96px; }
   .brand-logo { width: min(210px, 58vw); }
+  .services-home,
+  .precision-band,
+  .trust-section,
+  .projects-section,
+  .final-cta-shell {
+    padding-top: 5.3rem;
+    padding-bottom: 5.3rem;
+  }
   .featured-work-panel { padding: 1.4rem; border-radius: 22px; }
+  .precision-card-head {
+    grid-template-columns: 52px 1fr;
+    gap: 0.9rem;
+  }
+  .precision-icon {
+    width: 52px;
+    height: 52px;
+  }
   .hero-content,
   .media-section,
   .trust-band,
@@ -1079,7 +1118,7 @@ strong { color: var(--text); }
   .quote-form { padding: 1.45rem; }
   .featured-work-card,
   .featured-work-card img {
-    min-height: 260px;
+    min-height: 300px;
   }
   .project-showcase a:first-child { grid-column: span 1; }
   .section-intro { padding-left: 0.85rem; }
